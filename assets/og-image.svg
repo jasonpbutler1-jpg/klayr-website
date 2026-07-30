@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Klayr">
+  <rect width="1200" height="630" fill="#F5F0E8"/>
+  <rect x="80" y="80" width="1040" height="470" rx="40" fill="#ffffff"/>
+  <rect x="140" y="150" width="120" height="120" rx="30" fill="#1D9E75"/>
+  <text x="200" y="232" text-anchor="middle"
+        font-family="-apple-system, Helvetica, Arial, sans-serif"
+        font-size="72" font-weight="700" fill="#ffffff">K</text>
+  <text x="300" y="245" font-family="-apple-system, Helvetica, Arial, sans-serif"
+        font-size="90" font-weight="800" fill="#1c2b26">Klayr</text>
+  <text x="140" y="360" font-family="-apple-system, Helvetica, Arial, sans-serif"
+        font-size="44" font-weight="600" fill="#43514c">One place to organize life with</text>
+  <text x="140" y="420" font-family="-apple-system, Helvetica, Arial, sans-serif"
+        font-size="44" font-weight="600" fill="#43514c">the people who matter.</text>
+</svg>

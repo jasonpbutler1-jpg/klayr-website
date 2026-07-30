@@ -1,0 +1,440 @@
+/* ==========================================================================
+   Klayr Website — Global Stylesheet
+   Sections:
+   1.  Design tokens (CSS custom properties)
+   2.  Base & reset
+   3.  Accessibility helpers (skip link, focus)
+   4.  Layout (container)
+   5.  Header & navigation
+   6.  Buttons
+   7.  Hero
+   8.  Feature grid
+   9.  Call to action
+   10. Content pages (legal / support / faq)
+   11. Placeholder notice component
+   12. 404 page
+   13. Footer
+   14. Responsive breakpoints
+   15. Reduced motion
+   ========================================================================== */
+
+/* 1. Design tokens ------------------------------------------------------- */
+:root {
+  --color-brand: #1D9E75;
+  --color-brand-dark: #17805e;
+  --color-cream: #F5F0E8;
+  --color-ink: #1c2b26;
+  --color-body: #43514c;
+  --color-muted: #6b776f;
+  --color-white: #ffffff;
+  --color-border: #e2e0d8;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 10px 30px rgba(28, 43, 38, 0.08);
+  --shadow-sm: 0 4px 12px rgba(28, 43, 38, 0.06);
+
+  --maxw: 1080px;
+}
+
+/* 2. Base & reset ------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-body);
+  background: var(--color-cream);
+  line-height: 1.65;
+  font-size: 1.05rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin: 0 0 var(--space-sm);
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 var(--space-sm); }
+
+a {
+  color: var(--color-brand-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover { color: var(--color-brand); }
+
+/* 3. Accessibility helpers ---------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--color-ink);
+  color: var(--color-white);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 0 0 var(--radius-sm) 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 4. Layout ------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+section {
+  padding-block: var(--space-lg);
+}
+
+/* 5. Header & navigation ------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245, 240, 232, 0.9);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.brand__mark {
+  width: 34px;
+  height: 34px;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  color: var(--color-ink);
+  font-size: 1rem;
+}
+
+.primary-nav ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+}
+
+.primary-nav a {
+  color: var(--color-ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.primary-nav a:hover,
+.primary-nav a[aria-current="page"] {
+  color: var(--color-brand-dark);
+}
+
+/* 6. Buttons ------------------------------------------------------------ */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-brand);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: var(--color-brand-dark);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-brand-dark);
+  border-color: var(--color-brand);
+}
+
+.btn--ghost:hover {
+  background: rgba(29, 158, 117, 0.1);
+  color: var(--color-brand-dark);
+}
+
+/* Button placed on the brand-colored CTA card */
+.btn--on-brand {
+  background: var(--color-white);
+  color: var(--color-brand-dark);
+}
+
+.btn--on-brand:hover {
+  background: #eef2f0;
+  color: var(--color-brand-dark);
+}
+
+/* 7. Hero --------------------------------------------------------------- */
+.hero {
+  text-align: center;
+  padding-block: var(--space-xl) var(--space-lg);
+}
+
+.hero p.lead {
+  font-size: 1.25rem;
+  color: var(--color-body);
+  max-width: 40ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-md);
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 8. Feature grid ------------------------------------------------------- */
+.features {
+  background: var(--color-white);
+  border-radius: var(--radius);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.feature {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+}
+
+.feature__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-sm);
+}
+
+/* 9. Call to action ----------------------------------------------------- */
+.cta {
+  text-align: center;
+}
+
+.cta__card {
+  background: var(--color-brand);
+  color: var(--color-white);
+  border-radius: var(--radius);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: var(--shadow);
+}
+
+.cta__card h2,
+.cta__card p { color: var(--color-white); }
+
+/* 10. Content pages (legal / support / faq) ----------------------------- */
+.page-header {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-lg);
+  text-align: center;
+}
+
+.page-content {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.page-content h2 { margin-top: var(--space-md); }
+
+.page-content ul,
+.page-content ol { padding-left: 1.4rem; }
+
+.meta-line {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+/* 11. Placeholder notice component -------------------------------------- */
+.placeholder {
+  background: var(--color-white);
+  border: 2px dashed var(--color-brand);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  margin-block: var(--space-md);
+}
+
+.placeholder__badge {
+  display: inline-block;
+  background: rgba(29, 158, 117, 0.12);
+  color: var(--color-brand-dark);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-sm);
+}
+
+/* 12. 404 page ---------------------------------------------------------- */
+.error-page {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.error-page .code {
+  font-size: clamp(4rem, 15vw, 8rem);
+  font-weight: 800;
+  color: var(--color-brand);
+  line-height: 1;
+  margin: 0;
+}
+
+/* 13. Footer ------------------------------------------------------------ */
+.site-footer {
+  background: var(--color-ink);
+  color: #cdd6d1;
+  padding-block: var(--space-lg) var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.site-footer a { color: #eef2f0; }
+
+/* Brand lockup stays light on the dark footer */
+.site-footer .brand { color: var(--color-white); }
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: space-between;
+}
+
+.footer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-nav a { text-decoration: none; }
+.footer-nav a:hover { text-decoration: underline; }
+
+.footer-legal {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.9rem;
+  color: #9fada7;
+}
+
+/* 14. Responsive breakpoints ------------------------------------------- */
+@media (max-width: 720px) {
+  .nav-toggle { display: inline-block; }
+
+  .primary-nav {
+    display: none;
+    width: 100%;
+  }
+
+  .primary-nav.is-open { display: block; }
+
+  .site-header .container { flex-wrap: wrap; }
+
+  .primary-nav ul {
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+  }
+}
+
+/* 15. Reduced motion ---------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
